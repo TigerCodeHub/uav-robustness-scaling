@@ -1,10 +1,23 @@
-# Model-Size Trends in Latency and Attitude-Coupling Robustness of a Depth-Based UAV Policy
+# UAV policy robustness vs. network size: Isaac Lab study
 
-Code and data for the paper. A quadrotor policy flies a 40 m obstacle corridor from one
-64×64 depth image and a 7-D state, outputting a body-frame velocity command. We train
-PPO policies at eight network widths (5,759 to 323,783 parameters) under four regimes
-and measure how success under command latency, attitude (tilt) coupling, and both
-together changes with network size and with training under the perturbation.
+[![CI](https://github.com/TigerCodeHub/uav-robustness-scaling/actions/workflows/ci.yml/badge.svg)](https://github.com/TigerCodeHub/uav-robustness-scaling/actions/workflows/ci.yml)
+[![Reproduce paper](https://github.com/TigerCodeHub/uav-robustness-scaling/actions/workflows/reproduce.yml/badge.svg)](https://github.com/TigerCodeHub/uav-robustness-scaling/actions/workflows/reproduce.yml)
+[![Code DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23786688.svg)](https://doi.org/10.5281/zenodo.23786688)
+[![Dataset DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23784876.svg)](https://doi.org/10.5281/zenodo.23784876)
+
+Code, trained policies, and evaluation results for
+
+> T. Deng, *Model-Size Trends in Latency and Attitude-Coupling Robustness of a Depth-Based
+> UAV Policy* (manuscript).
+
+A quadrotor policy flies a 40 m obstacle corridor in Isaac Sim 5.1 / Isaac Lab 2.3.2 from one
+64×64 depth image and a 7-D state, outputting a body-frame velocity command. PPO policies at
+eight network widths (5,759 to 323,783 parameters) are trained clean or under command latency
+(mean 0.2 s), attitude-coupled tilt (up to 20°), or both, and tested clean and degraded on
+unseen procedurally generated courses. Larger networks were more robust under every
+degradation, even when trained clean; how much degradation training adds as networks grow
+depends on the degradation (it nearly vanishes for tilt, changes little for latency, and grows
+for both combined).
 
 | Regime   | Trained under   | Widths `w`           | Evaluated under                         |
 |----------|-----------------|----------------------|-----------------------------------------|
@@ -16,6 +29,12 @@ together changes with network size and with training under the perturbation.
 Ten seeds per cell (240 policies), 2M environment steps each. Every policy is evaluated
 on six analysis courses (seeds 9000–9002, 9100–9102) and, separately, on ten held-out
 courses (9200–9209) that were not used while the analysis was developed.
+
+The trained policies and evaluation results are on Zenodo (dataset DOI:
+[10.5281/zenodo.23784876](https://doi.org/10.5281/zenodo.23784876)); see
+[`DATA_MANIFEST.md`](DATA_MANIFEST.md). Releases of this repository are archived on Zenodo
+(code DOI: [10.5281/zenodo.23786688](https://doi.org/10.5281/zenodo.23786688), all
+versions; v1.0.0 is [10.5281/zenodo.23786689](https://doi.org/10.5281/zenodo.23786689)).
 
 ## Repository layout
 

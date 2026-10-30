@@ -9,6 +9,7 @@ authors:
     orcid: "https://orcid.org/0009-0008-0549-590X"
 version: 1.0.0
 license: MIT
+doi: 10.5281/zenodo.23786688
 repository-code: "https://github.com/TigerCodeHub/uav-robustness-scaling"
 keywords:
   - quadrotor
@@ -34,4 +35,12 @@ references:
     publisher:
       name: Zenodo
     year: 2026
-# The software's own (concept) DOI is added after the first Zenodo GitHub release.
+preferred-citation:
+  type: article
+  title: "Model-Size Trends in Latency and Attitude-Coupling Robustness of a Depth-Based UAV Policy"
+  authors:
+    - family-names: Deng
+      given-names: Tiger
+      affiliation: "Thomas Jefferson High School for Science and Technology"
+      orcid: "https://orcid.org/0009-0008-0549-590X"
+  year: 2026

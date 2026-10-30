@@ -6,7 +6,8 @@ Zenodo as one file, `data_results.tar.gz`:
 
 - DOI: [10.5281/zenodo.23784876](https://doi.org/10.5281/zenodo.23784876)
 - License: CC-BY-4.0 (the code is MIT)
-- Code: https://github.com/TigerCodeHub/uav-robustness-scaling
+- Code: https://github.com/TigerCodeHub/uav-robustness-scaling (DOI:
+  [10.5281/zenodo.23786688](https://doi.org/10.5281/zenodo.23786688), all versions)
 
 The archive contains this file, `DATA_CHECKSUMS.txt` and `data/results/` (469 MB, 19,680
 files). Extract it at the root of the code repository. `DATA_CHECKSUMS.txt` lists the
