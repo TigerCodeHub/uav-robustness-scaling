@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+build/
+dist/
+.venv/
+venv/
+
+# Run outputs and the downloaded data archive
+results/
+outputs/
+data/results/
+*.pt
+
+# Local copy of the paper for auditing; not part of the repository
+paper/

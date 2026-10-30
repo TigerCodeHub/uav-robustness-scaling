@@ -1,0 +1,29 @@
+name: CI
+
+# Fast checks on every push: dependencies install, the package, scripts and analysis compile, the
+# shell scripts parse, and the unit tests pass. The full reproduction against the Zenodo data lives
+# in reproduce.yml.
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install dependencies
+        # CPU build of torch first: the tests only build and run the network on the CPU
+        run: |
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -r requirements.txt
+      - name: Compile package, scripts and analysis
+        run: python -m compileall -q gpuperception scripts analysis tests
+      - name: Check shell scripts
+        run: bash -n scripts/reproduce_paper.sh scripts/run_all.sh
+      - name: Unit tests
+        run: python -m pytest -q

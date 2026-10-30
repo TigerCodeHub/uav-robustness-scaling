@@ -1,0 +1,4 @@
+1 thread median: w=0.25 0.13 ms, w=2.0 0.37 ms (difference +0.24 ms)
+4 threads median: w=2.0 0.26 ms
+GPU median range: 0.17-0.19 ms
+10x the w=2.0 1-thread time: 3.7 ms = 7% of a 50 ms control step, 1.8% of the 0.2 s mean latency

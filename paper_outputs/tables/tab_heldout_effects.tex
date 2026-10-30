@@ -1,0 +1,39 @@
+\begin{tabular}{@{}l r r c c@{}}
+\toprule
+Effect & six courses & held-out & 95\% CI (held-out) & same sign \\
+\midrule
+\multicolumn{5}{l}{\textbf{Size trend of perturbed success (per doubling)}} \\
+P1-clean / latency & $+0.064$ & $+0.051$ & $(+0.034,+0.070)$ & 10/10 \\
+P1-clean / tilt & $+0.211$ & $+0.209$ & $(+0.183,+0.236)$ & 10/10 \\
+P1-clean / combined & $+0.105$ & $+0.091$ & $(+0.079,+0.103)$ & 10/10 \\
+P2-lat / latency & $+0.089$ & $+0.088$ & $(+0.071,+0.105)$ & 10/10 \\
+P3-tilt / tilt & $+0.052$ & $+0.031$ & $(+0.023,+0.039)$ & 10/10 \\
+P4-comb / combined & $+0.176$ & $+0.155$ & $(+0.139,+0.173)$ & 10/10 \\
+\midrule
+\multicolumn{5}{l}{\textbf{Size trend of robustness (per doubling)}} \\
+P1-clean / latency & $+0.046$ & $+0.028$ & $(+0.011,+0.045)$ & 10/10 \\
+P1-clean / tilt & $+0.240$ & $+0.237$ & $(+0.199,+0.275)$ & 10/10 \\
+P1-clean / combined & $+0.123$ & $+0.104$ & $(+0.089,+0.120)$ & 10/10 \\
+P2-lat / latency & $+0.071$ & $+0.074$ & $(+0.051,+0.096)$ & 10/10 \\
+P4-comb / combined & $+0.135$ & $+0.116$ & $(+0.051,+0.160)$ & 9/10 \\
+\midrule
+\multicolumn{5}{l}{\textbf{Training benefit (trained $-$ P1-clean)}} \\
+P2-lat, latency, $w=0.25$ & $+0.040$ & $+0.027$ & $(-0.048,+0.106)$ & 6/10 \\
+P2-lat, latency, $w=2.0$ & $+0.117$ & $+0.134$ & $(+0.102,+0.165)$ & 10/10 \\
+P3-tilt, tilt, $w=0.25$ & $+0.479$ & $+0.514$ & $(+0.429,+0.598)$ & 10/10 \\
+P3-tilt, tilt, $w=2.0$ & $+0.025$ & $+0.020$ & $(+0.006,+0.033)$ & 6/10 \\
+P4-comb, combined, $w=0.25$ & $+0.245$ & $+0.242$ & $(+0.179,+0.297)$ & 10/10 \\
+P4-comb, combined, $w=2.0$ & $+0.397$ & $+0.387$ & $(+0.341,+0.433)$ & 10/10 \\
+\midrule
+\multicolumn{5}{l}{\textbf{Size trend of training benefit (per doubling)}} \\
+P2-lat, latency & $+0.022$ & $+0.034$ & $(+0.008,+0.060)$ & 9/10 \\
+P3-tilt, tilt & $-0.160$ & $-0.178$ & $(-0.205,-0.150)$ & 10/10 \\
+P4-comb, combined & $+0.071$ & $+0.065$ & $(+0.044,+0.086)$ & 9/10 \\
+\midrule
+\multicolumn{5}{l}{\textbf{Compounding: $R_{\text{comb}}-R_{\text{lat}}R_{\text{tilt}}$, P1-clean}} \\
+$w=0.25$ & $-0.087$ & $-0.078$ & $(-0.144,-0.027)$ & 8/10 \\
+$w=0.5$ & $-0.152$ & $-0.168$ & $(-0.230,-0.112)$ & 9/10 \\
+$w=1.0$ & $-0.179$ & $-0.235$ & $(-0.280,-0.191)$ & 10/10 \\
+$w=2.0$ & $-0.197$ & $-0.209$ & $(-0.260,-0.161)$ & 10/10 \\
+\bottomrule
+\end{tabular}

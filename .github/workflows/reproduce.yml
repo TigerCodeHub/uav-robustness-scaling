@@ -1,0 +1,54 @@
+name: Reproduce paper
+
+# Full reproduction: resolve the data DOI to its Zenodo record, download the archive, check it is the
+# archive this repository describes, verify every file against DATA_CHECKSUMS.txt, re-run every
+# analysis behind the paper (scripts/reproduce_paper.sh) and fail if any output differs from the
+# committed copies in paper_outputs/.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  DATA_DOI: "10.5281/zenodo.23784876"
+  ARCHIVE: data_results.tar.gz
+  ARCHIVE_SHA256: 491148827a9e9f10e1e16a7d2f5872ba46e329f73c07ddda271eccdb1ad335a5
+
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install dependencies
+        run: pip install numpy
+      - name: Download the data archive by DOI
+        run: |
+          record_url=$(curl -fsSL --retry 3 -o /dev/null -w '%{url_effective}' "https://doi.org/${DATA_DOI}")
+          record_id=${record_url##*/}
+          echo "DOI ${DATA_DOI} -> ${record_url}"
+          curl -fsSL --retry 3 "https://zenodo.org/api/records/${record_id}" > record.json
+          file_url=$(python -c "import json; d = json.load(open('record.json')); print(next(f['links']['self'] for f in d['files'] if f['key'] == '${ARCHIVE}'))")
+          curl -fsSL --retry 3 -o "$ARCHIVE" "$file_url"
+          echo "${ARCHIVE_SHA256}  ${ARCHIVE}" | sha256sum -c
+      - name: Extract
+        run: |
+          # DATA_MANIFEST.md in the repository may gain later DOIs, so keep the repository's copy;
+          # the archived DATA_CHECKSUMS.txt must be identical to the committed one.
+          tar -xzf "$ARCHIVE" --exclude=DATA_MANIFEST.md
+          rm "$ARCHIVE" record.json
+          git diff --exit-code DATA_CHECKSUMS.txt
+      - name: Verify checksums and reproduce every table and in-text number
+        run: PYTHON=python bash scripts/reproduce_paper.sh
+      - name: Upload outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reproduce-outputs
+          path: outputs/
+          if-no-files-found: ignore

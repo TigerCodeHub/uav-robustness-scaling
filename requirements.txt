@@ -1,0 +1,5 @@
+# Analysis and tests only (no simulator needed). For training and evaluation use
+# requirements-isaac.txt inside an Isaac Sim 5.1 / Isaac Lab 2.3 Python 3.11 environment.
+numpy>=1.26
+pytest>=7
+torch>=2.0    # tests only; the CPU build is enough
